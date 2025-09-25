@@ -25,11 +25,90 @@ The platform uses signed two's complement integer arithmetic with int and long p
 
 
 ## PROGRAM:
+## MainActivity.java
+```
+package com.example.myapplication;
+import android.os.Bundle; import android.view.View; import android.widget.Button; import android.widget.EditText;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+public class MainActivity extends AppCompatActivity { EditText num1, num2;
+Button addBtn, subBtn, mulBtn, divBtn; TextView result;
+@Override
+protected void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); setContentView(R.layout.activity_main);
+num1 = findViewById(R.id.num1); num2 = findViewById(R.id.num2); addBtn = findViewById(R.id.addBtn); subBtn = findViewById(R.id.subBtn); mulBtn = findViewById(R.id.mulBtn); divBtn = findViewById(R.id.divBtn); result = findViewById(R.id.result);
+
+addBtn.setOnClickListener(v -> operate('+')); subBtn.setOnClickListener(v -> operate('-')); mulBtn.setOnClickListener(v -> operate('*')); divBtn.setOnClickListener(v -> operate('/'));
+} 
+private void operate(char op) {
+double n1 = Double.parseDouble(num1.getText().toString()); double n2 = Double.parseDouble(num2.getText().toString()); double res = 0;
+switch (op) {
+case '+': res = n1 + n2; break; case '-': res = n1 - n2; break; case '*': res = n1 * n2; break;
+case '/': res = n2 != 0 ? n1 / n2 : 0; break; }
+result.setText("Result: " + res); }
+}
+```
+## Activity_main.xml
+```
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:padding="16dp">
+<EditText android:id="@+id/num1" android:hint="Enter Number 1" android:layout_width="match_parent" android:layout_height="wrap_content"
+android:inputType="numberDecimal"/>
+<EditText android:id="@+id/num2" android:hint="Enter Number 2" android:layout_width="match_parent" android:layout_height="wrap_content"
+android:inputType="numberDecimal"/>
+<LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+<Button android:id="@+id/addBtn" android:text="+" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+<Button android:id="@+id/subBtn" android:text="-" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+<Button android:id="@+id/mulBtn" android:text="*" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+<Button android:id="@+id/divBtn" android:text="/" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+</LinearLayout>
+
+<TextView android:id="@+id/result" android:text="Result:" android:layout_width="match_parent" android:layout_height="wrap_content"
+android:paddingTop="10dp"/>
+</LinearLayout>
+DEVELOPING-AN-ANDROID-APPLICATION-TO-PERFORM-MATHEMATICAL-OPERATION.Assignment
+DEVELOPING AN ANDROID APPLICATION FOR ADDRESS BOOKURL
+MainActivity.java
+package com.example.myapplication;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+public class MainActivity extends AppCompatActivity {
+EditText name, phone;
+Button save;
+TextView output;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+name = findViewById(R.id.name);
+phone = findViewById(R.id.phone);
+save = findViewById(R.id.save);
+output = findViewById(R.id.output);
+save.setOnClickListener(v -> {
+String contact = "Name: " + name.getText().toString() + "\nPhone: " + phone.getText().toString();
+output.setText(contact);
+});
+}
+activity_main.xml
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:padding="16dp">
+<EditText android:id="@+id/name" android:hint="Enter Name" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+<EditText android:id="@+id/phone" android:hint="Enter Phone" android:layout_width="match_parent" android:layout_height="wrap_content"
+android:inputType="phone"/>
+<Button android:id="@+id/save" android:text="Save Contact" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+<TextView android:id="@+id/output" android:paddingTop="16dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+</LinearLayout>
+}
+
+```
 
 
 
 
 ## OUTPUT:
+<img width="1919" height="1021" alt="Screenshot 2025-09-25 102010" src="https://github.com/user-attachments/assets/588b0e63-c32c-4296-900e-0bbd51f843d8" />
+
 
 
 
